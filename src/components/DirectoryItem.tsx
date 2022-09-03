@@ -25,11 +25,7 @@ export const DirectoryItem = ({ item }: DirectoryItemProps) => {
               </div>
             ))}
             <div className="h-8 w-5">
-              <div className="relative h-full w-full">
-                <div className="relative h-full w-full">
-                  {lastChild ? <LastChildBranchIcon /> : <ChildBranchIcon />}
-                </div>
-              </div>
+              <div className="relative h-full w-full">{lastChild ? <LastChildBranchIcon /> : <ChildBranchIcon />}</div>
             </div>
           </>
         )}
