@@ -9,7 +9,7 @@ const src = new FileNode('src', FileType.folder, myApp);
 const node = new FileNode('node_modules', FileType.folder, myApp);
 const components = new FileNode('components', FileType.folder, src);
 const index = new FileNode('index.tsx', FileType.file, src);
-const form = new FileNode('Form.tsx', FileType.file, src);
+const form = new FileNode('Form.tsx', FileType.file, components);
 
 const Home: NextPage = () => {
   return (
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 
         <div className="my-4 flex h-[500px] w-full gap-12">
           <div className="flex-1 rounded-lg border-2 border-teal-400">
-            <div className="flex h-full items-center justify-center">
+            <div className="flex h-full">
               <DirectoryItem item={myApp} />
             </div>
           </div>
