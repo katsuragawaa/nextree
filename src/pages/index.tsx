@@ -10,6 +10,7 @@ const node = new FileNode('node_modules', FileType.folder, myApp);
 const components = new FileNode('components', FileType.folder, src);
 const index = new FileNode('index.tsx', FileType.file, src);
 const form = new FileNode('Form.tsx', FileType.file, components);
+/** end */
 
 const Home: NextPage = () => {
   return (
