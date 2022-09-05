@@ -1,4 +1,4 @@
-import { last, flattenDeep, RecursiveArray, times } from 'lodash';
+import { last, flattenDeep, RecursiveArray } from 'lodash';
 import { FileNode, FileType, TreeOptions } from '../lib/FileNode';
 import { LINE_STRINGS } from '../lib/constants';
 
@@ -6,23 +6,21 @@ type AsciiTreeProps = {
   node: FileNode;
 };
 
-function isLastChild(node: FileNode): boolean {
-  return last(node.parent?.children) === node;
-}
+const isLastChild = (node: FileNode): boolean => last(node.parent?.children) === node;
 
-const getAsciiLine = (tree: FileNode, options: TreeOptions): string => {
+const getAsciiLine = (node: FileNode, options: TreeOptions): string => {
   const lines = LINE_STRINGS[options.charset];
   if (lines === undefined) {
     throw new Error('Invalid line strings type');
   }
 
-  const suffix = tree.type === FileType.folder ? '/' : '';
-  const chunks = [isLastChild(tree) ? lines.LAST_CHILD : lines.CHILD, tree.name, suffix];
+  const suffix = node.type === FileType.folder ? '/' : '';
+  const chunks = [isLastChild(node) ? lines.LAST_CHILD : lines.CHILD, node.name, suffix];
 
-  let node = tree.parent;
-  while (node) {
-    chunks.unshift(isLastChild(node) ? lines.EMPTY : lines.DIRECTORY);
-    node = node.parent;
+  let current = node.parent;
+  while (current) {
+    chunks.unshift(isLastChild(current) ? lines.EMPTY : lines.DIRECTORY);
+    current = current.parent;
   }
 
   return chunks.join('').substring(lines.CHILD.length);
