@@ -3,6 +3,12 @@ export enum FileType {
   folder,
 }
 
+export interface TreeOptions {
+  charset: 'ascii' | 'utf-8';
+  trailingDirSlash: boolean;
+  fullPath?: boolean;
+}
+
 export interface FileNodeInterface {
   name: string;
   type: FileType;

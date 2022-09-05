@@ -3,19 +3,19 @@ import { TbFolder, TbFile } from 'react-icons/tb';
 import { FileNode, FileType } from '../lib/FileNode';
 import { ChildBranchIcon, ConnectorBranchIcon, LastChildBranchIcon } from './BranchIcon';
 
-type DirectoryItemProps = {
-  item: FileNode;
+type VisualTreeProps = {
+  node: FileNode;
 };
 
-export const DirectoryItem = ({ item }: DirectoryItemProps) => {
-  const hasChildren = item.children.length > 0;
-  const depth = item.getDepth();
-  const lastChild = last(item.parent?.children) === item;
+export const VisualTree = ({ node }: VisualTreeProps) => {
+  const hasChildren = node.children.length > 0;
+  const depth = node.getDepth();
+  const lastChild = last(node.parent?.children) === node;
 
   return (
     <div>
       <div className="flex items-center">
-        {depth !== 0 && (
+        {depth > 0 && (
           <>
             {times(depth - 1, key => (
               <div key={key} className="h-8 w-5">
@@ -30,10 +30,10 @@ export const DirectoryItem = ({ item }: DirectoryItemProps) => {
           </>
         )}
 
-        {item.type === FileType.folder ? <TbFolder className="mx-1 mt-0.5" /> : <TbFile className="mx-1 mt-0.5" />}
-        <div>{item.name}</div>
+        {node.type === FileType.folder ? <TbFolder className="mx-1 mt-0.5" /> : <TbFile className="mx-1 mt-0.5" />}
+        <div>{node.name}</div>
       </div>
-      {hasChildren && item.children.map((child, i) => <DirectoryItem key={i} item={child} />)}
+      {hasChildren && node.children.map((child, i) => <VisualTree key={i} node={child} />)}
     </div>
   );
 };

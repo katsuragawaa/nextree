@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { DirectoryItem } from '../components/DirectoryItem';
+import { AsciiTree } from '../components/AsciiTree';
+import { TreeContainer } from '../components/TreeContainer';
+import { VisualTree } from '../components/VisualTree';
 import { FileNode, FileType } from '../lib/FileNode';
 
 /** example */
@@ -10,6 +12,7 @@ const node = new FileNode('node_modules', FileType.folder, myApp);
 const components = new FileNode('components', FileType.folder, src);
 const index = new FileNode('index.tsx', FileType.file, src);
 const form = new FileNode('Form.tsx', FileType.file, components);
+const pack = new FileNode('package.json', FileType.file, myApp);
 /** end */
 
 const Home: NextPage = () => {
@@ -33,14 +36,12 @@ const Home: NextPage = () => {
         </div>
 
         <div className="my-4 flex h-[500px] w-full gap-12">
-          <div className="flex-1 rounded-lg border-2 border-teal-400">
-            <div className="flex h-full">
-              <DirectoryItem item={myApp} />
-            </div>
-          </div>
-          <div className="flex-1 rounded-lg border-2 border-teal-400">
-            <div className="flex h-full items-center justify-center">right container</div>
-          </div>
+          <TreeContainer>
+            <VisualTree node={myApp} />
+          </TreeContainer>
+          <TreeContainer>
+            <AsciiTree node={myApp} />
+          </TreeContainer>
         </div>
       </main>
     </>
