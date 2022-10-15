@@ -37,7 +37,7 @@ export const VisualTree = ({ node, update }: VisualTreeProps) => {
           </>
         )}
 
-        {node.type === FileType.folder ? <TbFolder className="mx-1 mt-0.5" /> : <TbFile className="mx-1 mt-0.5" />}
+        {node.type === FileType.folder ? <TbFolder className="mx-1" /> : <TbFile className="mx-1" />}
         <InlineEdit value={node.name} setValue={changeName} />
       </div>
       {hasChildren && node.children.map((child, i) => <VisualTree key={i} node={child} update={update} />)}
