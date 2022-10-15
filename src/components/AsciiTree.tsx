@@ -29,7 +29,7 @@ const getAsciiLine = (node: FileNode, options: TreeOptions): string => {
 const generateTree = (structure: FileNode, options: TreeOptions): string =>
   flattenDeep([
     getAsciiLine(structure, options),
-    structure.children.map(c => generateTree(c, options)) as RecursiveArray<string>,
+    structure.children.map((c) => generateTree(c, options)) as RecursiveArray<string>,
   ]).join('\n');
 
 export const AsciiTree = ({ node }: AsciiTreeProps) => {
@@ -44,9 +44,5 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
     fullPath: false,
   };
 
-  return (
-    <div>
-      <pre>{generateTree(node, options)}</pre>
-    </div>
-  );
+  return <pre>{generateTree(node, options)}</pre>;
 };
