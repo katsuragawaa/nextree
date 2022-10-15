@@ -15,6 +15,7 @@ export interface FileNodeInterface {
   parent: FileNodeInterface | null;
   children: FileNodeInterface[];
   getDepth(depth: number): number;
+  setName(name: string): void;
 }
 
 export class FileNode implements FileNodeInterface {
@@ -41,5 +42,13 @@ export class FileNode implements FileNodeInterface {
     }
 
     return this.parent.getDepth(depth + 1);
+  }
+
+  /**
+   * Change file name
+   */
+  public setName(name: string): void {
+    console.log('this name: ', this)
+    this.name = name;
   }
 }
