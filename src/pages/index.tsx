@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useState } from 'react';
 import { AsciiTree } from '../components/AsciiTree';
 import { TreeContainer } from '../components/TreeContainer';
 import { VisualTree } from '../components/VisualTree';
@@ -16,6 +17,10 @@ const pack = new FileNode('package.json', FileType.file, myApp);
 /** end */
 
 const Home: NextPage = () => {
+  // force re-render of the page
+  const [_, setKey] = useState(0);
+  const update = () => setKey(Math.random());
+
   return (
     <>
       <Head>
@@ -37,7 +42,7 @@ const Home: NextPage = () => {
 
         <div className="my-4 flex h-[500px] w-full gap-12">
           <TreeContainer>
-            <VisualTree node={myApp} />
+            <VisualTree node={myApp} update={update} />
           </TreeContainer>
           <TreeContainer>
             <AsciiTree node={myApp} />
