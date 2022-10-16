@@ -1,3 +1,4 @@
+import { uniqueId } from 'lodash';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -23,8 +24,8 @@ const readme = new FileNode('README.md', FileType.file, myApp);
 
 const Home: NextPage = () => {
   // force re-render of the page
-  const [_, setKey] = useState(0);
-  const update = () => setKey(Math.random());
+  const [_, setKey] = useState('');
+  const update = () => setKey(uniqueId());
 
   return (
     <>
