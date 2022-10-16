@@ -44,9 +44,23 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
     fullPath: false,
   };
 
+  const tree = generateTree(node, options);
+
+  const copy = () => {
+    navigator.clipboard.writeText(tree);
+  };
+
   return (
-    <div className="overflow-x-scroll">
-      <pre>{generateTree(node, options)}</pre>
-    </div>
+    <>
+      <div
+        className="absolute right-12 cursor-pointer rounded border border-teal-400 py-1 px-2 text-center text-sm  transition-all hover:bg-teal-400"
+        onClick={copy}
+      >
+        Copy Tree
+      </div>
+      <div className="overflow-x-scroll">
+        <pre>{tree}</pre>
+      </div>
+    </>
   );
 };
