@@ -9,11 +9,11 @@ import { FileNode, FileType } from '../lib/FileNode';
 /** example */
 const myApp = new FileNode('my_app', FileType.folder, null);
 const src = new FileNode('src', FileType.folder, myApp);
-const node = new FileNode('node_modules', FileType.folder, myApp);
+// const node = new FileNode('node_modules', FileType.folder, myApp);
 const components = new FileNode('components', FileType.folder, src);
-const index = new FileNode('index.tsx', FileType.file, src);
+// const index = new FileNode('index.tsx', FileType.file, src);
 const form = new FileNode('Form.tsx', FileType.file, components);
-const pack = new FileNode('package.json', FileType.file, myApp);
+// const pack = new FileNode('package.json', FileType.file, myApp);
 /** end */
 
 const Home: NextPage = () => {

@@ -1,15 +1,20 @@
 import { last, times } from 'lodash';
-import { TbFolder, TbFile } from 'react-icons/tb';
-import { FileNode, FileType } from '../lib/FileNode';
+import { useState } from 'react';
+import { TbFile, TbFolder } from 'react-icons/tb';
+import { FileNodeInterface, FileType } from '../lib/FileNode';
 import { ChildBranchIcon, ConnectorBranchIcon, LastChildBranchIcon } from './BranchIcon';
+import { FileActions } from './FileActions';
+import { FolderActions } from './FolderActions';
 import { InlineEdit } from './InlineEdit';
 
 type VisualTreeProps = {
-  node: FileNode;
+  node: FileNodeInterface;
   update: () => void;
 };
 
 export const VisualTree = ({ node, update }: VisualTreeProps) => {
+  const [hover, setHover] = useState(false);
+
   const hasChildren = node.children.length > 0;
   const depth = node.getDepth();
   const lastChild = last(node.parent?.children) === node;
@@ -19,9 +24,19 @@ export const VisualTree = ({ node, update }: VisualTreeProps) => {
     update();
   };
 
+  const addChild = (type: FileType) => {
+    node.addChild(`new_${FileType[type]}`, type);
+    update();
+  };
+
+  const remove = () => {
+    node.remove();
+    update();
+  };
+
   return (
-    <div>
-      <div className="flex items-center">
+    <div className="w-full" key={node.key}>
+      <div className="flex items-center" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         {depth > 0 && (
           <>
             {times(depth - 1, (key) => (
@@ -37,8 +52,14 @@ export const VisualTree = ({ node, update }: VisualTreeProps) => {
           </>
         )}
 
-        {node.type === FileType.folder ? <TbFolder className="mx-1" /> : <TbFile className="mx-1" />}
+        <div className="mx-1">{node.type === FileType.folder ? <TbFolder /> : <TbFile />}</div>
         <InlineEdit value={node.name} setValue={changeName} />
+        {hover &&
+          (node.type === FileType.folder ? (
+            <FolderActions add={addChild} remove={remove} />
+          ) : (
+            <FileActions remove={remove} />
+          ))}
       </div>
       {hasChildren && node.children.map((child, i) => <VisualTree key={i} node={child} update={update} />)}
     </div>

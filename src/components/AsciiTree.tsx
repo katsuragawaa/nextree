@@ -1,14 +1,14 @@
 import { last, flattenDeep, RecursiveArray } from 'lodash';
-import { FileNode, FileType, TreeOptions } from '../lib/FileNode';
+import { FileNodeInterface, FileType, TreeOptions } from '../lib/FileNode';
 import { LINE_STRINGS } from '../lib/constants';
 
 type AsciiTreeProps = {
-  node: FileNode;
+  node: FileNodeInterface;
 };
 
-const isLastChild = (node: FileNode): boolean => last(node.parent?.children) === node;
+const isLastChild = (node: FileNodeInterface): boolean => last(node.parent?.children) === node;
 
-const getAsciiLine = (node: FileNode, options: TreeOptions): string => {
+const getAsciiLine = (node: FileNodeInterface, options: TreeOptions): string => {
   const lines = LINE_STRINGS[options.charset];
   if (lines === undefined) {
     throw new Error('Invalid line strings type');
@@ -26,7 +26,7 @@ const getAsciiLine = (node: FileNode, options: TreeOptions): string => {
   return chunks.join('').substring(lines.CHILD.length);
 };
 
-const generateTree = (structure: FileNode, options: TreeOptions): string =>
+const generateTree = (structure: FileNodeInterface, options: TreeOptions): string =>
   flattenDeep([
     getAsciiLine(structure, options),
     structure.children.map((c) => generateTree(c, options)) as RecursiveArray<string>,
@@ -44,5 +44,9 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
     fullPath: false,
   };
 
-  return <pre>{generateTree(node, options)}</pre>;
+  return (
+    <div className="overflow-x-scroll">
+      <pre>{generateTree(node, options)}</pre>
+    </div>
+  );
 };
