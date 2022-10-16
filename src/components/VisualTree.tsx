@@ -54,12 +54,14 @@ export const VisualTree = ({ node, update }: VisualTreeProps) => {
 
         <div className="mx-1">{node.type === FileType.folder ? <TbFolder /> : <TbFile />}</div>
         <InlineEdit value={node.name} setValue={changeName} />
-        {hover &&
-          (node.type === FileType.folder ? (
-            <FolderActions add={addChild} remove={remove} />
-          ) : (
-            <FileActions remove={remove} />
-          ))}
+        <div className="ml-2">
+          {hover &&
+            (node.type === FileType.folder ? (
+              <FolderActions add={addChild} remove={remove} />
+            ) : (
+              <FileActions remove={remove} />
+            ))}
+        </div>
       </div>
       {hasChildren && node.children.map((child, i) => <VisualTree key={i} node={child} update={update} />)}
     </div>
