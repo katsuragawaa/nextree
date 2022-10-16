@@ -34,15 +34,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto flex min-h-screen flex-col items-center py-8 px-12 lg:px-32 xl:px-12">
-        <h1 className="m-8 text-5xl font-extrabold leading-normal text-gray-600 md:text-7xl">
+      <main className="container mx-auto flex min-h-screen flex-col py-8 px-12 lg:px-32 xl:px-12">
+        <h1 className="my-8 text-5xl font-extrabold leading-normal text-gray-600 md:text-7xl">
           Nex<span className="text-teal-400">tree</span>
         </h1>
 
-        <div className="my-4 w-full">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Nunc mattis enim ut tellus elementum sagittis vitae et leo. Sit amet tellus cras adipiscing
-          enim.
+        <div className="my-4 flex w-full flex-col gap-2 text-justify xl:w-[calc(50%-24px)]">
+          <p>
+            A next-gen tree-like app that helps you visualize and create your perfect folder structure for your next
+            project.
+          </p>
+          <p>
+            With <span className="font-bold">Nextree</span>, you can easily convert your folder structure to an ASCII
+            format to save to your documentation.
+          </p>
         </div>
 
         <div className="my-4 flex w-full flex-1 flex-col gap-12 xl:flex-row">
