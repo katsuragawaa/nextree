@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           enim.
         </div>
 
-        <div className="my-4 flex h-[500px] w-full gap-12">
+        <div className="my-4 flex w-full flex-1 gap-12">
           <TreeContainer>
             <VisualTree node={myApp} update={update} />
           </TreeContainer>
