@@ -12,11 +12,12 @@ export interface TreeOptions {
 }
 
 export interface FileNodeInterface {
+  key: string;
   name: string;
   type: FileType;
   parent: FileNodeInterface | null;
   children: FileNodeInterface[];
-  getDepth(depth: number): number;
+  getDepth(depth?: number): number;
   setName(name: string): void;
   addChild(name: string, type: FileType): void;
   remove(): void;
