@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto flex min-h-screen flex-col items-center py-8 px-48">
+      <main className="container mx-auto flex min-h-screen flex-col items-center py-8 px-12 lg:px-32 xl:px-12">
         <h1 className="m-8 text-5xl font-extrabold leading-normal text-gray-600 md:text-7xl">
           Nex<span className="text-teal-400">tree</span>
         </h1>
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           enim.
         </div>
 
-        <div className="my-4 flex w-full flex-1 gap-12">
+        <div className="my-4 flex w-full flex-1 flex-col gap-12 xl:flex-row">
           <TreeContainer>
             <VisualTree node={myApp} update={update} />
           </TreeContainer>
