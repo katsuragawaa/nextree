@@ -26,7 +26,7 @@ export const InlineEdit = ({ value, setValue }: InlineEditProps) => {
 
   return (
     <input
-      className="px-1 outline-1 outline-teal-400"
+      className="truncate px-1 outline-1 outline-teal-400"
       type="text"
       aria-label="File name"
       value={editingValue}
