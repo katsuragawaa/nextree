@@ -9,11 +9,16 @@ import { FileNode, FileType } from '../lib/FileNode';
 /** example */
 const myApp = new FileNode('my_app', FileType.folder, null);
 const src = new FileNode('src', FileType.folder, myApp);
-// const node = new FileNode('node_modules', FileType.folder, myApp);
+const node = new FileNode('node_modules', FileType.folder, myApp);
 const components = new FileNode('components', FileType.folder, src);
-// const index = new FileNode('index.tsx', FileType.file, src);
+const pages = new FileNode('pages', FileType.folder, src);
+const home = new FileNode('Home.tsx', FileType.file, pages);
+const index = new FileNode('index.tsx', FileType.file, src);
 const form = new FileNode('Form.tsx', FileType.file, components);
-// const pack = new FileNode('package.json', FileType.file, myApp);
+const nav = new FileNode('Navbar.tsx', FileType.file, components);
+const button = new FileNode('Button.tsx', FileType.file, components);
+const pack = new FileNode('package.json', FileType.file, myApp);
+const readme = new FileNode('README.md', FileType.file, myApp);
 /** end */
 
 const Home: NextPage = () => {
