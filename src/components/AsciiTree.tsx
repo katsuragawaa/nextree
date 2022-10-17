@@ -58,7 +58,7 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
       >
         Copy Tree
       </div>
-      <div className="overflow-x-scroll">
+      <div className="overflow-x-auto">
         <pre>{tree}</pre>
       </div>
     </>
