@@ -1,5 +1,6 @@
-import { last, times } from 'lodash';
 import { useState } from 'react';
+import { last, times } from 'lodash';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { TbFile, TbFolder } from 'react-icons/tb';
 import { FileNodeInterface, FileType } from '../lib/FileNode';
 import { ChildBranchIcon, ConnectorBranchIcon, LastChildBranchIcon } from './BranchIcon';
@@ -14,6 +15,7 @@ type VisualTreeProps = {
 
 export const VisualTree = ({ node, update }: VisualTreeProps) => {
   const [hover, setHover] = useState(false);
+  const [animate] = useAutoAnimate<HTMLDivElement>({ duration: 75 });
 
   const hasChildren = node.children.length > 0;
   const depth = node.getDepth();
@@ -35,7 +37,7 @@ export const VisualTree = ({ node, update }: VisualTreeProps) => {
   };
 
   return (
-    <div className="w-full" key={node.key}>
+    <div ref={animate} className="w-full" key={node.key}>
       <div className="flex items-center" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         {depth > 0 && (
           <>
