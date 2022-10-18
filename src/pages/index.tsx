@@ -51,6 +51,7 @@ const Home: NextPage = () => {
         <title>Nextree</title>
         <meta name="description" content="Next gen tree-like app" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="google-site-verification" content="7APYurRc2-NISfGqRN80Ibc2cbG9ASsWSRv2NeRtEMY" />
       </Head>
 
       <main className="container mx-auto flex min-h-screen flex-col py-8 px-12 lg:px-32 xl:px-12">
