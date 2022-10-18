@@ -1,7 +1,8 @@
-import { uniqueId } from 'lodash';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
+import { NextSeo } from 'next-seo';
+import { uniqueId } from 'lodash';
 import { AsciiTree } from '../components/AsciiTree';
 import { TreeContainer } from '../components/TreeContainer';
 import { VisualTree } from '../components/VisualTree';
@@ -29,6 +30,23 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <NextSeo
+        title="Nextree"
+        description="Next gen tree-like app to visualize folder structure"
+        openGraph={{
+          type: 'website',
+          locale: 'en_US',
+          url: 'https://nextree.vercel.app/',
+          title: 'Nextree',
+          description: 'Next gen tree-like app to visualize folder structure',
+        }}
+        twitter={{
+          handle: '@batatapalhaco',
+          site: '@batatapalhaco',
+          cardType: 'summary_large_image',
+        }}
+      />
+
       <Head>
         <title>Nextree</title>
         <meta name="description" content="Next gen tree-like app" />
