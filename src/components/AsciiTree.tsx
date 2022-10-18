@@ -1,3 +1,4 @@
+import { useSnackbar } from 'react-simple-snackbar';
 import { last, flattenDeep, RecursiveArray } from 'lodash';
 import { FileNodeInterface, FileType, TreeOptions } from '../lib/FileNode';
 import { LINE_STRINGS } from '../lib/constants';
@@ -29,10 +30,27 @@ const getAsciiLine = (node: FileNodeInterface, options: TreeOptions): string => 
 const generateTree = (structure: FileNodeInterface, options: TreeOptions): string =>
   flattenDeep([
     getAsciiLine(structure, options),
-    structure.children.map((c) => generateTree(c, options)) as RecursiveArray<string>,
+    structure.children.map((child) => generateTree(child, options)) as RecursiveArray<string>,
   ]).join('\n');
 
+const snackbar = {
+  position: 'top-center',
+  style: {
+    backgroundColor: 'white',
+    color: 'black',
+    textAlign: 'center',
+    borderRadius: '0.5rem',
+    border: '1px solid rgb(45 212 191)',
+    fontWeight: 500,
+  },
+  closeStyle: {
+    color: 'black',
+  },
+};
+
 export const AsciiTree = ({ node }: AsciiTreeProps) => {
+  const [openSnackbar] = useSnackbar(snackbar);
+
   const lines = LINE_STRINGS['utf-8'];
   if (lines === undefined) {
     throw new Error('Invalid line strings type');
@@ -47,6 +65,7 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
   const tree = generateTree(node, options);
 
   const copy = () => {
+    openSnackbar('Copied to clipboard!', 1500);
     navigator.clipboard.writeText(tree);
   };
 

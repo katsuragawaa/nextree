@@ -1,8 +1,13 @@
-import "../styles/globals.css";
-import type { AppType } from "next/dist/shared/lib/utils";
+import type { AppType } from 'next/dist/shared/lib/utils';
+import SnackbarProvider from 'react-simple-snackbar';
+import '../styles/globals.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <SnackbarProvider>
+      <Component {...pageProps} />
+    </SnackbarProvider>
+  );
 };
 
 export default MyApp;
