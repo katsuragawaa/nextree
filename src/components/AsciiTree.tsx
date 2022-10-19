@@ -72,7 +72,7 @@ export const AsciiTree = ({ node }: AsciiTreeProps) => {
   return (
     <>
       <div
-        className="absolute right-12 cursor-pointer rounded border border-teal-400 py-1 px-2 text-center text-sm  transition-all hover:bg-teal-400"
+        className="absolute right-4 cursor-pointer rounded border border-teal-400 py-1 px-2 text-center text-sm transition-all  hover:bg-teal-400 md:right-12"
         onClick={copy}
       >
         Copy Tree

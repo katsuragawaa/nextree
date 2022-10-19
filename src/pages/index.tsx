@@ -54,7 +54,7 @@ const Home: NextPage = () => {
         <meta name="google-site-verification" content="7APYurRc2-NISfGqRN80Ibc2cbG9ASsWSRv2NeRtEMY" />
       </Head>
 
-      <main className="container mx-auto flex min-h-screen flex-col py-8 px-12 lg:px-32 xl:px-12">
+      <main className="container mx-auto flex min-h-screen flex-col px-4 py-8 md:px-12 lg:px-32 xl:px-12">
         <h1 className="my-8 text-5xl font-extrabold leading-normal text-gray-600 md:text-7xl">
           Nex<span className="text-teal-400">tree</span>
         </h1>
